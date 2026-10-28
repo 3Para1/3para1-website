@@ -132,31 +132,21 @@
       letter-spacing: .15em;
       text-transform: uppercase;
     }
-
-    .hero {
-      .hero-title {
+.hero-title {
+  position: relative;
+  z-index: 2;
+  display: block;
+  visibility: visible;
+  opacity: 1;
+  color: #eeede8;
   margin: clamp(26px,4vw,56px) 0 0;
   font-size: clamp(76px,16.5vw,250px);
   font-weight: 900;
-  line-height: .72;
+  line-height: .85;
   letter-spacing: -.095em;
   white-space: nowrap;
-    }
-
-    .hero:before {
-      content: "";
-      position: absolute;
-      z-index: -2;
-      inset: 0;
-      background: linear-gradient(
-        90deg,
-        #090909 0%,
-        rgba(9,9,9,.96) 37%,
-        rgba(9,9,9,.72) 72%,
-        #090909 100%
-      );
-    }
-
+}
+    
     .watermark {
       position: absolute;
       z-index: -1;
