@@ -132,21 +132,22 @@
       letter-spacing: .15em;
       text-transform: uppercase;
     }
-.hero-title {
-  position: relative;
-  z-index: 2;
-  display: block;
-  visibility: visible;
-  opacity: 1;
-  color: #eeede8;
-  margin: clamp(26px,4vw,56px) 0 0;
-  font-size: clamp(76px,16.5vw,250px);
-  font-weight: 900;
-  line-height: .85;
-  letter-spacing: -.095em;
-  white-space: nowrap;
-}
-    
+
+    .hero-title {
+      position: relative;
+      z-index: 2;
+      display: block;
+      visibility: visible;
+      opacity: 1;
+      color: #eeede8;
+      margin: clamp(26px,4vw,56px) 0 0;
+      font-size: clamp(76px,16.5vw,250px);
+      font-weight: 900;
+      line-height: .85;
+      letter-spacing: -.095em;
+      white-space: nowrap;
+    }
+
     .watermark {
       position: absolute;
       z-index: -1;
@@ -347,7 +348,41 @@
     .music-embed {
       border-top: 1px solid var(--paper);
       padding-top: 14px;
+      min-width: 0;
+      background: #111;
     }
+
+    .spotify-frame-wrap {
+      position: relative;
+      width: 100%;
+      min-width: 0;
+      background: #121212;
+      overflow: hidden;
+    }
+
+    .spotify-frame-wrap iframe {
+      color-scheme: dark;
+      background: #121212;
+    }
+
+    .spotify-fallback {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 0 0;
+      color: #b9b9b9;
+      font: 10px/1.5 monospace;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .spotify-fallback a {
+      color: var(--cyan);
+      white-space: nowrap;
+    }
+
+    .spotify-fallback a:hover { text-decoration: underline; }
 
     .micro-label {
       display: flex;
@@ -934,6 +969,265 @@
         display: none !important;
       }
     }
+
+    /* Mobile layout refinement: preserve the visual identity, remove desktop-sized gaps. */
+    @media (max-width: 760px) {
+      :root { --gutter: 22px; }
+
+      html { scroll-padding-top: 66px; }
+      body { overflow-x: clip; }
+
+      .wrap {
+        width: calc(100% - var(--gutter) * 2);
+        max-width: 100%;
+      }
+
+      .nav {
+        height: 62px;
+        gap: 12px;
+      }
+
+      .brand-small {
+        font-size: 14px;
+        letter-spacing: .13em;
+      }
+
+      .menu {
+        min-height: 40px;
+        padding: 10px 12px;
+      }
+
+      .nav-right {
+        z-index: 26;
+        box-shadow: 0 14px 24px rgba(0,0,0,.28);
+      }
+
+      .hero {
+        min-height: auto;
+        overflow: hidden;
+      }
+
+      .hero-inner {
+        padding: 58px 0 44px;
+      }
+
+      .coordinates {
+        max-width: calc(100% - 20px);
+        flex-wrap: wrap;
+        gap: 8px 10px;
+        font-size: 9px;
+        line-height: 1.5;
+        letter-spacing: .12em;
+      }
+
+      .coordinates:before {
+        width: 22px;
+        flex: 0 0 22px;
+      }
+
+      .coordinates span { display: none; }
+
+      .hero-title {
+        margin-top: 28px;
+        max-width: 100%;
+        font-size: clamp(58px, 15.2vw, 82px);
+        line-height: .88;
+        letter-spacing: -.095em;
+      }
+
+      .hero-bottom {
+        margin-top: 30px;
+        grid-template-columns: minmax(0, 1fr);
+        gap: 22px;
+        align-items: start;
+      }
+
+      .hero-note {
+        max-width: 36rem;
+        font-size: 15px;
+        line-height: 1.65;
+      }
+
+      .hero-actions {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        justify-content: stretch;
+        gap: 4px;
+      }
+
+      .action {
+        width: 100%;
+        min-height: 48px;
+        justify-content: space-between;
+        padding: 12px 0;
+        font-size: 10px;
+      }
+
+      .hero-index {
+        top: 12px;
+        right: 0;
+        font-size: 8px;
+      }
+
+      .watermark {
+        width: 110vw;
+        max-width: none;
+        right: -48%;
+        top: 47%;
+        opacity: .07;
+      }
+
+      .ticker {
+        padding: 12px 0;
+        font-size: 9px;
+      }
+
+      .ticker-line { gap: 22px; }
+
+      .section {
+        padding: 60px 0;
+      }
+
+      .section-top {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 12px;
+        margin-bottom: 32px;
+      }
+
+      .section-no {
+        padding-top: 0;
+        font-size: 9px;
+      }
+
+      .section-title {
+        font-size: clamp(40px, 11.5vw, 62px);
+        line-height: .92;
+        overflow-wrap: anywhere;
+      }
+
+      .section-desc {
+        margin-top: 18px;
+        font-size: 13px;
+        line-height: 1.7;
+      }
+
+      .music-layout,
+      .visual-layout,
+      .signal-layout {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 30px;
+      }
+
+      .music-embed { min-width: 0; }
+      .music-embed iframe {
+        width: 100%;
+        max-width: 100%;
+        height: 352px;
+      }
+
+      .micro-label {
+        gap: 12px;
+        font-size: 8px;
+        letter-spacing: .1em;
+      }
+
+      .music-copy { padding-top: 0; }
+      .music-copy h3 {
+        font-size: clamp(30px, 8.5vw, 42px);
+        line-height: 1;
+        margin-bottom: 18px;
+      }
+
+      .music-copy p,
+      .visual-detail p,
+      .shop-meta,
+      .signal-copy p {
+        font-size: 13px;
+        line-height: 1.75;
+      }
+
+      .visual-statement {
+        font-size: clamp(27px, 7.5vw, 38px);
+        line-height: 1.08;
+      }
+
+      .video-link {
+        margin-top: 24px;
+        gap: 12px;
+        font-size: 10px;
+        letter-spacing: .09em;
+      }
+
+      .video-link span:first-child {
+        min-width: 0;
+        gap: 10px;
+      }
+
+      .shop-row {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 28px;
+        align-items: start;
+      }
+
+      .shop-heading {
+        font-size: clamp(48px, 13vw, 72px);
+        line-height: .88;
+      }
+
+      .shop-cta {
+        width: 100%;
+        min-height: 54px;
+      }
+
+      .signal-copy h2 {
+        font-size: clamp(48px, 12vw, 70px);
+        line-height: .9;
+      }
+
+      .signal-form-wrap { padding: 20px; }
+
+      .formkit-form[data-uid="d552636ef0"] .formkit-fields {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .formkit-form[data-uid="d552636ef0"] .formkit-submit {
+        width: 100%;
+        min-height: 52px;
+      }
+
+      .connect { padding: 30px 0; }
+
+      .connect-row {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 24px;
+      }
+
+      .socials { gap: 18px 22px; }
+
+      .footer-row {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 12px;
+      }
+    }
+
+    @media (max-width: 390px) {
+      :root { --gutter: 18px; }
+
+      .hero-inner { padding-top: 52px; }
+      .hero-title { font-size: clamp(54px, 15vw, 62px); }
+      .coordinates { font-size: 8px; }
+      .section-title { font-size: clamp(37px, 11.3vw, 48px); }
+      .micro-label { font-size: 7px; }
+      .signal-form-wrap { padding: 16px; }
+    }
+
+    @media (min-width: 761px) {
+      .hero { min-height: 0; }
+    }
+
   </style>
 </head>
 
@@ -950,7 +1244,7 @@
         <a href="#visuals">Visuals</a>
         <a href="#shop">Artifacts</a>
         <a href="#signal">Signal</a>
-        <a href="#connect">Find us</a>
+        <a href="https://discord.gg/AUTUprUkj" target="_blank" rel="noopener noreferrer">Discord ↗</a>
       </nav>
     </div>
   </header>
@@ -1007,13 +1301,19 @@
               <span>Artist transmission</span>
               <span>Spotify / 3PARA1</span>
             </div>
-            <iframe
-              title="3PARA1 on Spotify"
-              src="https://open.spotify.com/embed/artist/1XYijpWxzfqumeNBY3HSkJ?utm_source=generator&theme=0"
-              loading="lazy"
-              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-              allowfullscreen>
-            </iframe>
+            <div class="spotify-frame-wrap">
+              <iframe
+                title="3PARA1 on Spotify"
+                src="https://open.spotify.com/embed/artist/1XYijpWxzfqumeNBY3HSkJ?theme=0"
+                loading="eager"
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                allowfullscreen>
+              </iframe>
+            </div>
+            <div class="spotify-fallback">
+              <span>Player not loading?</span>
+              <a href="https://open.spotify.com/artist/1XYijpWxzfqumeNBY3HSkJ" target="_blank" rel="noopener noreferrer">Open Spotify ↗</a>
+            </div>
           </div>
 
           <div class="music-copy">
