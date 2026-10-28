@@ -134,13 +134,13 @@
     }
 
     .hero {
-      min-height: min(850px,calc(100svh - 68px));
-      position: relative;
-      display: flex;
-      align-items: center;
-      overflow: hidden;
-      border-bottom: 1px solid var(--rule);
-      isolation: isolate;
+      .hero-title {
+  margin: clamp(26px,4vw,56px) 0 0;
+  font-size: clamp(76px,16.5vw,250px);
+  font-weight: 900;
+  line-height: .72;
+  letter-spacing: -.095em;
+  white-space: nowrap;
     }
 
     .hero:before {
